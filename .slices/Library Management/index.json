@@ -1,0 +1,60 @@
+{
+  "slices": [
+    {
+      "id": "3458764674084680611",
+      "slice": "slice: Create Catalog Entry",
+      "index": 1,
+      "context": "Library Management",
+      "folder": "createcatalogentry",
+      "status": "Done"
+    },
+    {
+      "id": "3458764674084680601",
+      "slice": "slice: Catalog Entries",
+      "index": 3,
+      "context": "Library Management",
+      "folder": "catalogentries",
+      "status": "Created"
+    },
+    {
+      "id": "3458764674084680600",
+      "slice": "slice: Catalogue entry removed",
+      "index": 5,
+      "context": "Library Management",
+      "folder": "catalogueentryremoved",
+      "status": "Created"
+    },
+    {
+      "id": "3458764674084680602",
+      "slice": "slice: Books Details to Lookup TODO",
+      "index": 7,
+      "context": "Library Management",
+      "folder": "booksdetailstolookuptodo",
+      "status": "Created"
+    },
+    {
+      "id": "3458764674084680603",
+      "slice": "slice: Lookup Book Details",
+      "index": 9,
+      "context": "Library Management",
+      "folder": "lookupbookdetails",
+      "status": "Created"
+    },
+    {
+      "id": "3458764674084680607",
+      "slice": "slice: Book archived",
+      "index": 11,
+      "context": "Library Management",
+      "folder": "bookarchived",
+      "status": "Created"
+    },
+    {
+      "id": "3458764674084680598",
+      "slice": "slice: All Books for rent",
+      "index": 13,
+      "context": "Library Management",
+      "folder": "allbooksforrent",
+      "status": "Created"
+    }
+  ]
+}

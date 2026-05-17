@@ -1,0 +1,72 @@
+{
+  "id": "3458764674084680602",
+  "status": "Informational",
+  "title": "slice: Books Details to Lookup TODO",
+  "context": "Library Management",
+  "sliceType": "STATE_VIEW",
+  "commands": [],
+  "events": [],
+  "readmodels": [
+    {
+      "id": "3458764674084680659",
+      "tags": [],
+      "elementContext": "INTERNAL",
+      "modelContext": "Library Management",
+      "context": "INTERNAL",
+      "slice": "slice: Books Details to Lookup TODO",
+      "title": "Books Details to Lookup TODO",
+      "fields": [
+        {
+          "name": "isbn",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        }
+      ],
+      "type": "READMODEL",
+      "description": "",
+      "aggregate": "Catalog Management",
+      "aggregateDependencies": [
+        "Catalog Management"
+      ],
+      "dependencies": [
+        {
+          "id": "3458764674084680655",
+          "type": "OUTBOUND",
+          "title": "Book Details Lookup",
+          "elementType": "AUTOMATION"
+        },
+        {
+          "id": "3458764674084680720",
+          "type": "INBOUND",
+          "title": "Catalogue entry created",
+          "elementType": "EVENT"
+        },
+        {
+          "id": "3458764674084680722",
+          "type": "INBOUND",
+          "title": "Book details result updated",
+          "elementType": "EVENT"
+        }
+      ],
+      "listElement": true,
+      "createsAggregate": false,
+      "triggers": [],
+      "sketched": false,
+      "prototype": {
+        "activeByDefault": false
+      }
+    }
+  ],
+  "screens": [],
+  "screenImages": [],
+  "screenLayouts": [],
+  "processors": [],
+  "tables": [],
+  "specifications": [],
+  "actors": [],
+  "aggregates": [
+    "Catalog Management"
+  ]
+}

@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS public.connections_read_model (
+    "connection_id"    VARCHAR(255) NOT NULL,
+    "organization_id"  VARCHAR(255) NOT NULL,
+    "connection_name"  VARCHAR(255),
+    "state"            VARCHAR(255),
+    "type"             VARCHAR(255),
+    PRIMARY KEY ("connection_id", "organization_id")
+);

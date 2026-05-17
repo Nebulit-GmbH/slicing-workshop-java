@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_context-mode_context-mode__execute_file",
+      "Bash(rtk find:*)",
+      "mcp__plugin_context-mode_context-mode__execute",
+      "Bash(java:*)",
+      "Bash(for slice:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $slice ===\")",
+      "Bash(__NEW_LINE_1bc1ab19ed9d4c66__ python3 -c \":*)",
+      "Bash(done)",
+      "mcp__proophboard__list_chapters",
+      "mcp__proophboard__get_chapter",
+      "mcp__proophboard__add_element",
+      "mcp__proophboard__add_lane",
+      "mcp__proophboard__guidelines",
+      "mcp__proophboard__rename_element",
+      "mcp__proophboard__add_slice",
+      "Bash(mvn test:*)"
+    ]
+  }
+}

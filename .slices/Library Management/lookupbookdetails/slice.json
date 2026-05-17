@@ -1,0 +1,229 @@
+{
+  "id": "3458764674084680603",
+  "status": "Created",
+  "title": "slice: Lookup Book Details",
+  "context": "Library Management",
+  "sliceType": "STATE_CHANGE",
+  "commands": [
+    {
+      "id": "3458764674084680657",
+      "tags": [],
+      "elementContext": "INTERNAL",
+      "modelContext": "Library Management",
+      "context": "INTERNAL",
+      "slice": "slice: Lookup Book Details",
+      "title": "Update Book Title from Lookup",
+      "fields": [
+        {
+          "name": "isbn",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        }
+      ],
+      "type": "COMMAND",
+      "description": "",
+      "aggregate": "Catalog Management",
+      "aggregateDependencies": [
+        "Catalog Management"
+      ],
+      "dependencies": [
+        {
+          "id": "3458764674084680722",
+          "type": "OUTBOUND",
+          "title": "Book details result updated",
+          "elementType": "EVENT"
+        },
+        {
+          "id": "3458764674084680723",
+          "type": "OUTBOUND",
+          "title": "Book detail look failed",
+          "elementType": "EVENT"
+        },
+        {
+          "id": "3458764674084680655",
+          "type": "INBOUND",
+          "title": "Book Details Lookup",
+          "elementType": "AUTOMATION"
+        }
+      ],
+      "createsAggregate": false,
+      "triggers": [],
+      "sketched": false,
+      "prototype": {
+        "activeByDefault": false
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "3458764674084680723",
+      "tags": [],
+      "elementContext": "INTERNAL",
+      "modelContext": "Library Management",
+      "context": "INTERNAL",
+      "slice": "slice: Lookup Book Details",
+      "title": "Book detail look failed",
+      "fields": [
+        {
+          "name": "isbn",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        }
+      ],
+      "type": "EVENT",
+      "description": "",
+      "aggregate": "Catalog Management",
+      "aggregateDependencies": [
+        "Catalog Management"
+      ],
+      "dependencies": [
+        {
+          "id": "3458764674084680657",
+          "type": "INBOUND",
+          "title": "Update Book Title from Lookup",
+          "elementType": "COMMAND"
+        }
+      ],
+      "createsAggregate": false,
+      "triggers": [],
+      "sketched": false,
+      "prototype": {
+        "activeByDefault": false
+      }
+    },
+    {
+      "id": "3458764674084680722",
+      "tags": [],
+      "elementContext": "INTERNAL",
+      "modelContext": "Library Management",
+      "context": "INTERNAL",
+      "slice": "slice: Lookup Book Details",
+      "title": "Book details result updated",
+      "fields": [
+        {
+          "name": "isbn",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        }
+      ],
+      "type": "EVENT",
+      "description": "",
+      "aggregate": "Catalog Management",
+      "aggregateDependencies": [
+        "Catalog Management"
+      ],
+      "dependencies": [
+        {
+          "id": "3458764674084680659",
+          "type": "OUTBOUND",
+          "title": "Books Details to Lookup TODO",
+          "elementType": "READMODEL"
+        },
+        {
+          "id": "3458764674084680657",
+          "type": "INBOUND",
+          "title": "Update Book Title from Lookup",
+          "elementType": "COMMAND"
+        }
+      ],
+      "createsAggregate": false,
+      "triggers": [],
+      "sketched": false,
+      "prototype": {
+        "activeByDefault": false
+      }
+    }
+  ],
+  "readmodels": [],
+  "screens": [],
+  "screenImages": [],
+  "screenLayouts": [],
+  "processors": [
+    {
+      "id": "3458764674084680655",
+      "tags": [],
+      "groupId": "3458764674084680875",
+      "elementContext": "INTERNAL",
+      "modelContext": "Library Management",
+      "context": "INTERNAL",
+      "slice": "slice: Lookup Book Details",
+      "title": "Book Details Lookup",
+      "fields": [
+        {
+          "name": "isbn",
+          "type": "String",
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "generated": true,
+          "subfields": [],
+          "cardinality": "Single",
+          "idAttribute": false
+        }
+      ],
+      "type": "AUTOMATION",
+      "description": "",
+      "aggregate": "Catalog Management",
+      "aggregateDependencies": [
+        "Catalog Management"
+      ],
+      "dependencies": [
+        {
+          "id": "3458764674084680657",
+          "type": "OUTBOUND",
+          "title": "Update Book Title from Lookup",
+          "elementType": "COMMAND"
+        },
+        {
+          "id": "3458764674084680659",
+          "type": "INBOUND",
+          "title": "Books Details to Lookup TODO",
+          "elementType": "READMODEL"
+        }
+      ],
+      "createsAggregate": false,
+      "triggers": [],
+      "sketched": false,
+      "prototype": {
+        "activeByDefault": false
+      }
+    }
+  ],
+  "tables": [],
+  "specifications": [],
+  "actors": [],
+  "aggregates": [
+    "Catalog Management"
+  ]
+}

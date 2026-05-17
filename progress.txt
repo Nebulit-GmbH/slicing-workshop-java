@@ -1,0 +1,31 @@
+# Event Model Development Progress Log
+Started: Tue Jun  2 20:42:01 CEST 2026
+---
+## Codebase Patterns
+- Context package name: context name lowercased, no spaces (e.g. "Library Management" → `librarymanagement`)
+- Aggregate `getVersion()` returns nullable Long; guard with ternary before passing to primitive `long` in CommandResult
+- For generated ID fields: accept a request record without ID in controller, generate UUID.randomUUID() server-side
+- Aggregate command handlers use `@CreationPolicy(AggregateCreationPolicy.ALWAYS)` for creation commands regardless of `createsAggregate` JSON flag
+
+>>> Iteration 1
+
+## [2026-06-02] - slice: Create Catalog Entry
+
+- Implemented STATE_CHANGE slice: CreateCatalogEntryCommand, CatalogueEntryCreatedEvent, CatalogManagementAggregate
+- Created POST /api/library-management/catalog-entries and debug GET endpoint
+- Added AggregateTestFixture-based unit test (1 test, passing)
+- Files changed: domain/commands/CreateCatalogEntryCommand.java, events/CatalogueEntryCreatedEvent.java, domain/CatalogManagementAggregate.java, librarymanagement/ProcessingGroups.java, librarymanagement/slices/createcatalogentry/CreateCatalogEntryController.java, CreateCatalogEntryTest.java
+- **Learnings for future iterations:**
+  - `AggregateLifecycle.getVersion()` returns nullable Long — always null-guard before CommandResult
+  - Use `@CreationPolicy(AggregateCreationPolicy.ALWAYS)` for first command on an aggregate
+  - Generated ID fields → generate UUID in controller, use inner `Request` record as request body
+---
+>>> Iteration 2
+Based on the index.json, there are no slices in status "planned" — all remaining slices are in status "Created" (one is "Done"). Per the Ralph Agent workflow rules:
+
+<promise>NO_TASKS</promise>
+
+The "Create Catalog Entry" slice is `Done`, but the remaining slices ("Catalog Entries", "Catalogue entry removed", "Lookup Book Details", "Book archived", "All Books for rent") are all in `Created` status. No slice has been explicitly set to `planned`, which is required before Ralph can assign work to backend_worker.
+
+To proceed, a slice needs to be moved to `planned` status in `.slices/Library Management/index.json`.
+>>> Iteration 3
