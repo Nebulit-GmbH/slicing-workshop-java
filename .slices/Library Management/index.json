@@ -14,7 +14,9 @@
       "index": 3,
       "context": "Library Management",
       "folder": "catalogentries",
-      "status": "Created"
+      "status": "InProgress",
+      "assigned": "backend_worker",
+      "started_time": "2026-06-02T20:42:01"
     },
     {
       "id": "3458764674084680600",
