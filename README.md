@@ -177,7 +177,8 @@ On macOS / Linux (requires Bash):
 On Windows (requires WSL or Node.js):
 
 ```bash
-node ralph.js
+./raph.sh         # Node.js wrapper (cross-platform)
+node ralph.js     # alternative
 ```
 
 Ralph reads the index, claims the slice, and delegates implementation to the backend agent via `prompt_backend.md`.
@@ -244,6 +245,7 @@ In `.slices/Library Management/index.json`, change the `status` of *Catalog Entr
 
 ```bash
 ./ralph.sh       # macOS / Linux
+./raph.sh        # Node.js (cross-platform)
 node ralph.js    # Windows / Node.js
 ```
 
@@ -308,6 +310,7 @@ In `.slices/Library Management/index.json`, change the `status` of *Catalog Entr
 
 ```bash
 ./ralph.sh       # macOS / Linux
+./raph.sh        # Node.js (cross-platform)
 node ralph.js    # Windows / Node.js
 ```
 
