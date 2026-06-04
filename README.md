@@ -272,3 +272,60 @@ Run the tests:
 ```bash
 ./mvnw test -Dtest="CatalogEntries*"
 ```
+
+---
+
+### Exercise 3 — Update a slice and let Ralph re-implement it
+
+The *Catalog Entries* read model was extended in EventModelers: a **Catalogue entry removed** event was added as a second inbound trigger, and two BDD specifications were written to drive the projector behavior. Your task is to bring those changes into the project and let Ralph implement the updated slice.
+
+**Step 1 — Merge the updated slice definition**
+
+```bash
+git merge exercise_3
+```
+
+This brings in the updated `.slices/Library Management/catalogentries/slice.json` and `config.json` with:
+- `Catalogue entry removed` as a second inbound event on the read model
+- Two specifications (Given/Then scenarios) covering *entry created* and *entry removed* projections
+
+**Step 2 — Reset the slice status to `planned`**
+
+In `.slices/Library Management/index.json`, change the `status` of *Catalog Entries* back to `"planned"`:
+
+```json
+{
+  "id": "3458764674084680601",
+  "slice": "slice: Catalog Entries",
+  "index": 3,
+  "context": "Library Management",
+  "folder": "catalogentries",
+  "status": "planned"
+}
+```
+
+**Step 3 — Run Ralph**
+
+```bash
+./ralph.sh       # macOS / Linux
+node ralph.js    # Windows / Node.js
+```
+
+Ralph picks up the slice, reads the updated spec, and re-generates the projector to handle both events. The specifications are used to generate the integration test scenarios.
+
+**Step 4 — Review the changes**
+
+The projector should now handle two events:
+
+| Event | Action |
+|---|---|
+| `CatalogueEntryCreatedEvent` | Save entry to read model |
+| `CatalogueEntryRemovedEvent` | Delete entry from read model |
+
+The generated test class covers both scenarios from the spec.
+
+Run the tests:
+
+```bash
+./mvnw test -Dtest="CatalogEntries*"
+```
