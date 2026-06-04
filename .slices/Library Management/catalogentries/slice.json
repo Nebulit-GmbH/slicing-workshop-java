@@ -49,6 +49,12 @@
           "type": "INBOUND",
           "title": "Catalogue entry created",
           "elementType": "EVENT"
+        },
+        {
+          "id": "3458764674084680721",
+          "type": "INBOUND",
+          "title": "Catalogue entry removed",
+          "elementType": "EVENT"
         }
       ],
       "listElement": true,
@@ -118,7 +124,198 @@
   "screenLayouts": [],
   "processors": [],
   "tables": [],
-  "specifications": [],
+  "specifications": [
+    {
+      "vertical": false,
+      "id": "3458764674337691573",
+      "sliceName": "slice: Catalog Entries",
+      "title": "spec: Catalog Entries - scenario",
+      "given": [
+        {
+          "title": "Catalogue entry created",
+          "tags": [],
+          "examples": [],
+          "id": "3458764674337691576",
+          "index": 0,
+          "specRow": -1,
+          "type": "SPEC_EVENT",
+          "fields": [
+            {
+              "name": "title",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": "Harry Potter"
+            },
+            {
+              "name": "isbn",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "author",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "id",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            }
+          ],
+          "linkedId": "3458764674084680720"
+        }
+      ],
+      "when": [],
+      "then": [
+        {
+          "title": "Catalog Entries",
+          "tags": [],
+          "examples": [],
+          "id": "3458764674337691575",
+          "index": 0,
+          "specRow": -1,
+          "type": "SPEC_READMODEL",
+          "fields": [
+            {
+              "name": "title",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": "Harry Potter"
+            },
+            {
+              "name": "id",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            }
+          ],
+          "linkedId": "3458764674084680631"
+        }
+      ],
+      "comments": [],
+      "linkedId": "3458764674084680601"
+    },
+    {
+      "vertical": false,
+      "id": "3458764674337779954",
+      "sliceName": "slice: Catalog Entries",
+      "title": "spec: Catalog Entries - Entries removed",
+      "given": [
+        {
+          "title": "Catalogue entry created",
+          "tags": [],
+          "id": "3458764674337779958",
+          "index": 0,
+          "specRow": -1,
+          "type": "SPEC_EVENT",
+          "fields": [
+            {
+              "name": "title",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "isbn",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "author",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "description",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "id",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            }
+          ],
+          "linkedId": "3458764674084680720"
+        },
+        {
+          "title": "Catalogue entry removed",
+          "tags": [],
+          "id": "3458764674337779961",
+          "index": 1,
+          "specRow": -1,
+          "type": "SPEC_EVENT",
+          "fields": [
+            {
+              "name": "id",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "technicalAttribute": true,
+              "example": ""
+            }
+          ],
+          "linkedId": "3458764674084680721"
+        }
+      ],
+      "when": [],
+      "then": [
+        {
+          "title": "Catalog Entries",
+          "tags": [],
+          "id": "3458764674337779955",
+          "index": 0,
+          "specRow": -1,
+          "type": "SPEC_READMODEL",
+          "fields": [
+            {
+              "name": "title",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            },
+            {
+              "name": "id",
+              "type": "String",
+              "subfields": [],
+              "cardinality": "Single",
+              "example": ""
+            }
+          ],
+          "linkedId": "3458764674084680631",
+          "expectEmptyList": true
+        }
+      ],
+      "comments": [],
+      "linkedId": "3458764674084680601"
+    }
+  ],
   "actors": [],
   "aggregates": [
     "Catalog Management"

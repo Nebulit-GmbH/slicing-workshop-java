@@ -78,6 +78,12 @@
       ],
       "dependencies": [
         {
+          "id": "3458764674084680631",
+          "type": "OUTBOUND",
+          "title": "Catalog Entries",
+          "elementType": "READMODEL"
+        },
+        {
           "id": "3458764674084680649",
           "type": "INBOUND",
           "title": "Remove Catalog Entry",

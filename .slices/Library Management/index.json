@@ -6,7 +6,7 @@
       "index": 1,
       "context": "Library Management",
       "folder": "createcatalogentry",
-      "status": "Done"
+      "status": "Created"
     },
     {
       "id": "3458764674084680601",
@@ -14,9 +14,7 @@
       "index": 3,
       "context": "Library Management",
       "folder": "catalogentries",
-      "status": "InProgress",
-      "assigned": "backend_worker",
-      "started_time": "2026-06-02T20:42:01"
+      "status": "Created"
     },
     {
       "id": "3458764674084680600",
@@ -32,7 +30,7 @@
       "index": 7,
       "context": "Library Management",
       "folder": "booksdetailstolookuptodo",
-      "status": "Created"
+      "status": "Informational"
     },
     {
       "id": "3458764674084680603",
