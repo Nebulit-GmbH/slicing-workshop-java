@@ -142,3 +142,133 @@ Or implement manually by invoking a skill directly in Claude Code:
 /state-view-slice
 /automation-slice
 ```
+
+---
+
+## Exercises
+
+### Exercise 1 — Let Ralph implement a slice end-to-end
+
+**Step 1 — Set the slice to `planned`**
+
+Open `.slices/Library Management/index.json` and change the `status` of the *Create Catalog Entry* slice from `"Done"` to `"planned"`:
+
+```json
+{
+  "id": "3458764674084680611",
+  "slice": "slice: Create Catalog Entry",
+  "index": 1,
+  "context": "Library Management",
+  "folder": "createcatalogentry",
+  "status": "planned"
+}
+```
+
+`planned` is the trigger status — Ralph will pick up any slice with that status on the next iteration.
+
+**Step 2 — Start the agent loop**
+
+On macOS / Linux (requires Bash):
+
+```bash
+./ralph.sh
+```
+
+On Windows (requires WSL or Node.js):
+
+```bash
+node ralph.js
+```
+
+Ralph reads the index, claims the slice, and delegates implementation to the backend agent via `prompt_backend.md`.
+
+**Step 3 — Watch the agent work**
+
+Ralph logs progress to `progress.txt`. You can tail it in a second terminal:
+
+```bash
+tail -f progress.txt
+```
+
+The agent invokes the appropriate skill (`/state-change-slice`, `/state-view-slice`, or `/automation-slice`), generates all files, runs the tests, commits the result, and marks the slice `Done` in `index.json`.
+
+**Step 4 — Review the generated code**
+
+Once Ralph emits `<promise>COMPLETE</promise>`, inspect what was generated under `src/`:
+
+```
+src/main/java/de/eventmodelers/
+└── librarymanagement/
+    └── slices/
+        └── createcatalogentry/
+            ├── CreateCatalogEntryController.java   # POST endpoint
+            └── internal/
+                └── (aggregate handler wired here)
+src/main/java/de/eventmodelers/
+├── domain/
+│   ├── BookAggregate.java                          # Aggregate with @CommandHandler
+│   └── commands/
+│       └── CreateCatalogEntryCommand.java
+└── events/
+    └── CatalogEntryCreatedEvent.java
+```
+
+Run the tests to confirm everything passes:
+
+```bash
+./mvnw test -Dtest="CreateCatalogEntry*"
+```
+
+---
+
+### Exercise 2 — Let Ralph implement a STATE_VIEW slice
+
+The *Catalog Entries* slice is a read model — it listens to events and exposes a `GET` endpoint. The flow is identical to Exercise 1.
+
+**Step 1 — Set the slice to `planned`**
+
+In `.slices/Library Management/index.json`, change the `status` of *Catalog Entries* to `"planned"`:
+
+```json
+{
+  "id": "3458764674084680601",
+  "slice": "slice: Catalog Entries",
+  "index": 3,
+  "context": "Library Management",
+  "folder": "catalogentries",
+  "status": "planned"
+}
+```
+
+**Step 2 — Run Ralph**
+
+```bash
+./ralph.sh       # macOS / Linux
+node ralph.js    # Windows / Node.js
+```
+
+**Step 3 — Review the generated read model**
+
+Because this is a `STATE_VIEW` slice, Ralph calls `/state-view-slice` and generates a different set of files:
+
+```
+src/main/java/de/eventmodelers/
+└── librarymanagement/
+    └── slices/
+        └── catalogentries/
+            ├── CatalogEntriesController.java          # GET endpoint
+            ├── CatalogEntriesReadModel.java           # JPA entity + DTO
+            ├── CatalogEntriesReadModelQuery.java      # Query record
+            └── internal/
+                ├── CatalogEntriesReadModelProjector.java     # @EventHandler
+                ├── CatalogEntriesReadModelQueryHandler.java  # @QueryHandler
+                └── CatalogEntriesReadModelRepository.java   # Spring Data repo
+```
+
+A Flyway migration script for the read model table is also created under `src/main/resources/db/migration/`.
+
+Run the tests:
+
+```bash
+./mvnw test -Dtest="CatalogEntries*"
+```
